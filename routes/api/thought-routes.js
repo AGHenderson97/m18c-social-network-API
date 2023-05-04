@@ -7,4 +7,4 @@ const {
   deleteThought,
   createReaction,
   deleteReaction,
-} = require('../../server/
+} = require('../../server');
