@@ -1,8 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const config = require('./config/config');
-const userRoutes = require('./routes/api/user-routes');
-const thoughtRoutes = require('./routes/api/thought-routes');
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const userRoutes = require('./routes/api/user-routes');
 const thoughtRoutes = require('./routes/api/thought-routes');
@@ -10,16 +13,12 @@ const thoughtRoutes = require('./routes/api/thought-routes');
 app.use('/api/users', userRoutes);
 app.use('/api/thoughts', thoughtRoutes);
 
-mongoose.connect(config.uri, {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/social-network-api', {
+  useFindAndModify: false,
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
 });
 
-app.use('/api/users', userRoutes);
-app.use('/api/thoughts', thoughtRoutes);
+mongoose.set('debug', true);
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
