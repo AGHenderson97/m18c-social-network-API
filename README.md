@@ -31,6 +31,8 @@ Below are the available API endpoints:
 - Thought
 - Reaction
 
+## Walkthrough
+https://drive.google.com/file/d/1-cFqzJEVlSOdmSC-X-cwdSO8KoUNj8r6/view?usp=share_link
 
 ## User Story:
 AS A social media startup
